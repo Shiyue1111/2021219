@@ -45,4 +45,11 @@ public class DeptServiceImpl implements DeptService {
     public void delete(String id) {
         deptDao.delete(id);
     }
+
+    @Override
+    public String findDeptParentId(String id) {
+        return deptDao.findDeptParentId(id);
+    }
+
+
 }

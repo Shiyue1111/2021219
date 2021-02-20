@@ -20,4 +20,24 @@ public class UserServiceImpl implements UserService {
         List<User> list =userDao.findAll(companyId);
         return new PageInfo<>(list,5);
     }
+
+    @Override
+    public void save(User user) {
+        userDao.save(user);
+    }
+
+    @Override
+    public void update(User user) {
+        userDao.update(user);
+    }
+
+    @Override
+    public User findById(String id) {
+        return userDao.findById(id);
+    }
+
+    @Override
+    public void delete(String id) {
+        userDao.delete(id);
+    }
 }

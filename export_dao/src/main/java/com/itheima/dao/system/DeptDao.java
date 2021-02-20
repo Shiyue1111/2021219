@@ -14,4 +14,6 @@ public interface DeptDao {
     void update(Dept dept);
 
     void delete(String id);
+
+    String findDeptParentId(String id);
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,14 +21,7 @@ public class DeptController extends BaseController {
     @Autowired
     private DeptService deptService;
 
-    //todo  做一个假数据  记录下companyId 和 companyName   登录功能完成之后调整
-    public String getCompanyId() {
-        return "1";
-    }
 
-    public String getCompanyName() {
-        return "大脸猫皮具外贸有限公司";
-    }
 
 
     @RequestMapping(value = "/list", name = "企业列表查询")
@@ -85,8 +79,14 @@ public class DeptController extends BaseController {
         return "redirect:/system/dept/list.do";
     }
     @RequestMapping(name ="删除部门",value = "/delete")
-    public String delete(String id){
+    public String delete(String id) throws IOException {
+        String parentId=deptService.findDeptParentId(id);
+        System.out.println(parentId);
+        if (parentId!=null){
+            response.getWriter().write("<script>alert('当前部门存在子部门,请先删除子部门')");
+        }else {
         deptService.delete(id);
+        }
         return "redirect:/system/dept/list.do";
     }
 }

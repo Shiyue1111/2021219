@@ -17,4 +17,6 @@ public interface DeptService {
     void update(Dept dept);
 
     void delete(String id);
+
+    String findDeptParentId(String id);
 }

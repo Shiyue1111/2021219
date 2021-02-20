@@ -75,4 +75,7 @@
     <select id="findAll" resultMap="BaseResultMap">
          select * from pe_dept where company_id = #{companyId}
     </select>
+    <select id="findDeptParentId" resultType="java.lang.String">
+        select parent_id from pe_dept WHERE dept_id = #{id}
+    </select>
 </mapper>
